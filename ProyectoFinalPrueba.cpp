@@ -17,7 +17,7 @@
 #endif
 //Música: YA ACEPTA LA DEFINICION PERO MARCA 4 ERRORES <<REVISAR>>
 //PlaySound(NULL, NULL, 0);
-//PlaySound("Musica.mp3", NULL, SND_LOOP | SND_ASYNC);
+//PlaySound("MusicaDeFondo.wav", NULL, SND_LOOP | SND_ASYNC);
 
 static GLuint ciudad_display_list;	//Display List for the Monito
 float posX = 0, posY = 2.5, posZ = -3.5, rotRodIzq = 0;
@@ -59,7 +59,7 @@ GLfloat g_lookupdown = 0.0f;    // Look Position In The Z-Axis (NEW)
 
 int font = (int)GLUT_BITMAP_HELVETICA_18;
 
-
+//TIPOS DE LUZ
 GLfloat Diffuse[] = { 0.5f, 0.5f, 0.5f, 1.0f };				// Diffuse Light Values
 GLfloat Specular[] = { 1.0, 1.0, 1.0, 1.0 };				// Specular Light Values
 GLfloat Position[] = { 0.0f, 7.0f, -5.0f, 0.0f };			// Light Position
@@ -74,14 +74,15 @@ GLfloat m_dif2[] = { 0.8f, 0.2f, 0.0f, 1.0f };				// Diffuse Light Values
 GLfloat m_spec2[] = { 0.0, 0.0, 0.0, 1.0 };				// Specular Light Values
 GLfloat m_amb2[] = { 0.0, 0.0, 0.0, 1.0 };				// Ambiental Light Values
 GLfloat m_s2[] = { 22 };
-
+//TEXTURAS
 CTexture text1;
 CTexture text2;
 CTexture text3;	//Flecha
 CTexture text4;	//Pavimento
 CTexture text5;	//Pasto01
 CTexture text6;	//Casa01
-
+CTexture t_metal01;//Textura de Metal gris
+CTexture t_METAL;//Metal de colores
 CTexture tree;
 
 CFiguras fig1;
@@ -99,9 +100,10 @@ CModel casita;
 CModel oldhouse;
 
 
-//CIRCUITO DE BOOMERANG
+//DECLARACIONES DEL CIRCUITO DE BOOMERANG
 //carritos
 float angRot = 0.0;//Angulo de rotacion
+float angRotAux = 0.0;//Angulo para el Vudu
 float movKitX = 0.0;//Movimiento en X
 float movKitY = 0.0;//Movimiento en Y
 float movKitZ = 0.0;//Movimiento en Z
@@ -123,6 +125,8 @@ bool recorrido9 = false;//Estado (I):avanza en curva de 180° <<hasta X=100>>
 bool recorrido10 = false;//Estado (J):Sube una loma de 180°
 bool recorrido11 = false;//Estado (K): Baja en Z´ hasta Z´=250
 bool recorrido12 = false;//Estado (L): Va en reversa desde <<Z´=250>> hasta <<Z=0>>
+//DECLARACIONES DE Vudu
+bool g_gira = false;
 void saveFrame(void)
 {
 
@@ -161,11 +165,444 @@ void interpolation(void)
 	KeyFrame[playIndex].movBrazoDerInc = (KeyFrame[playIndex + 1].movBrazoDer - KeyFrame[playIndex].movBrazoDer) / i_max_steps;
 
 }
+void boomerang()
+{
+	//los soportes tienen textura metalica gris
+	//Soporte1
+	glPushMatrix();
+	glTranslatef(-50, 25, 25);
+	fig7.cilindro(0.25, 250.0, 0.5, t_metal01.GLindex);
+	
+	//fig7.cilindro(t_metal01.GLindex, t_metal01.GLindex);
+	glPopMatrix();
+	//Soporte2
+	glPushMatrix();
+	glPopMatrix();
+	//Soporte3
+	glPushMatrix();
+	glPopMatrix();
+	//Soporte4
+	glPushMatrix();
+	glPopMatrix();
+	//Soporte5
+	glPushMatrix();
+	glPopMatrix();
+	//Soporte6
+	glPushMatrix();
+	glPopMatrix();
+	//Soporte7
+	glPushMatrix();
+	glPopMatrix();
+	//Soporte8
+	glPushMatrix();
+	glPopMatrix();
+	//Soporte9
+	glPushMatrix();
+	glPopMatrix();
+	//Soporte10
+	glPushMatrix();
+	glPopMatrix();
+	//Soporte11
+	glPushMatrix();
+	glPopMatrix();
+	//Soporte12
+	glPushMatrix();
+	glPopMatrix();
+	//CIRCUITO BOOMERANG: Textura de metal de colores
+	//1
+	glPushMatrix();
+	glPopMatrix();
+	//2
+	glPushMatrix();
+	glPopMatrix();
+	//3
+	glPushMatrix();
+	glPopMatrix();
+	//4
+	glPushMatrix();
+	glPopMatrix();
+	//5
+	glPushMatrix();
+	glPopMatrix(); 
+	//6
+	glPushMatrix();
+	glPopMatrix();
+	//7
+	glPushMatrix();
+	glPopMatrix(); 
+	//8
+	glPushMatrix();
+	glPopMatrix();
+	//9
+	glPushMatrix();
+	glPopMatrix();
+	//10
+	glPushMatrix();
+	glPopMatrix(); 
+	//11
+	glPushMatrix();
+	glPopMatrix(); 
+	//12
+	glPushMatrix();
+	glPopMatrix(); 
+	//13
+	glPushMatrix();
+	glPopMatrix();
+	//14
+	glPushMatrix();
+	glPopMatrix();
+	//15
+	glPushMatrix();
+	glPopMatrix();
+	//16
+	glPushMatrix();
+	glPopMatrix();
+	//17
+	glPushMatrix();
+	glPopMatrix();
+	//18
+	glPushMatrix();
+	glPopMatrix();
+	//19
+	glPushMatrix();
+	glPopMatrix();
+	//20
+	glPushMatrix();
+	glPopMatrix();
+	//21
+	glPushMatrix();
+	glPopMatrix();
+	//22
+	glPushMatrix();
+	glPopMatrix(); 
+	//23
+	glPushMatrix();
+	glPopMatrix(); 
+	//24
+	glPushMatrix();
+	glPopMatrix();
+	//25
+	glPushMatrix();
+	glPopMatrix(); 
+	//26
+	glPushMatrix();
+	glPopMatrix(); 
+	//27
+	glPushMatrix();
+	glPopMatrix();
+	//28
+	glPushMatrix();
+	glPopMatrix(); 
+	//29
+	glPushMatrix();
+	glPopMatrix();
+	//////TRASLACION PARTE II DEL CIRCUITO
+	//24'
+	glPushMatrix();
+	glPopMatrix();
+	//25'
+	glPushMatrix();
+	glPopMatrix();
+	//26'
+	glPushMatrix();
+	glPopMatrix();
+	//27'
+	glPushMatrix();
+	glPopMatrix();
+	//28'
+	glPushMatrix();
+	glPopMatrix();
+	//29'
+	glPushMatrix();
+	glPopMatrix();
+	//16'
+	glPushMatrix();
+	glPopMatrix();
+	//17'
+	glPushMatrix();
+	glPopMatrix();
+	//19'
+	glPushMatrix();
+	glPopMatrix();
+	//20'
+	glPushMatrix();
+	glPopMatrix();
+	//21'
+	glPushMatrix();
+	glPopMatrix();
+	//22'
+	glPushMatrix();
+	glPopMatrix();
+	//23'
+	glPushMatrix();
+	glPopMatrix();
+	//31
+	glPushMatrix();
+	glPopMatrix();
+	//1'
+	glPushMatrix();
+	glPopMatrix();
+	//2'
+	glPushMatrix();
+	glPopMatrix();
+	//3'
+	glPushMatrix();
+	glPopMatrix();
+	//4'
+	glPushMatrix();
+	glPopMatrix();
+	//5'
+	glPushMatrix();
+	glPopMatrix();
+	//6'
+	glPushMatrix();
+	glPopMatrix();
+	//7'
+	glPushMatrix();
+	glPopMatrix();
+	//8'
+	glPushMatrix();
+	glPopMatrix();
+	//////////////////////////////////////
+	
+	
+	
+}
+
+void vudu() 
+{
+	//Soportes
+	//Soporte1
+	glPushMatrix();
+	glPopMatrix();
+	//Soporte2
+	glPushMatrix();
+	glPopMatrix();
+	//Soporte3
+	glPushMatrix();
+	glPopMatrix();
+	//Soporte4
+	glPushMatrix();
+	glPopMatrix();
+	//Estructura
+	//Prisma
+	glPushMatrix();
+	glPopMatrix();
+	//Pendulo
+	//Prisma
+	glPushMatrix();
+	glPopMatrix();
+	//Toroide
+	glPushMatrix();
+	glPopMatrix();
+}
+
+void banos1()
+{
+	//Baños de Hombres
+	glPushMatrix();
+	glPopMatrix();
+}
+void banos2()
+{
+	//Baños de Mujeres
+	glPushMatrix();
+	glPopMatrix();
+
+}
+void banos3()
+{
+	//Baños de Hombres
+	glPushMatrix();
+	glPopMatrix();
+}
+void banos4()
+{
+	//Baños de Mujeres
+	glPushMatrix();
+	glPopMatrix();
+
+}
+void lockers()
+{
+	//5 Lockers
+	//1
+	glPushMatrix();
+	glPopMatrix();
+	//2
+	glPushMatrix();
+	glPopMatrix();
+	//3
+	glPushMatrix();
+	glPopMatrix();
+	//4
+	glPushMatrix();
+	glPopMatrix();
+	//5
+	glPushMatrix();
+	glPopMatrix();
+}
+void primerosauxilios()
+{
+	//Enfermeria
+	glPushMatrix();
+	//Escritorio
+	glPushMatrix();
+	glPopMatrix();
+	//Silla
+	glPushMatrix();
+	glPopMatrix();
+	//camilla
+	glPushMatrix();
+	glPopMatrix();
+	//Botiquin
+	glPushMatrix();
+	glPopMatrix();
+	glPopMatrix();
+}
+//Puestos de Comida
+void mexico()
+{
+	//Local
+	glPushMatrix();
+	//Barra
+	glPushMatrix();
+	glPopMatrix();
+	glPopMatrix();
+	//Mesas (2)
+	//1
+	glPushMatrix();
+	glPopMatrix();
+	//Bancas (2) para mesa1
+	glPushMatrix();
+	glPopMatrix();
+	glPushMatrix();
+	glPopMatrix();
+	//2
+	glPushMatrix();
+	glPopMatrix();
+	//Bancas (2) para mesa2
+	glPushMatrix();
+	glPopMatrix();
+	glPushMatrix();
+	glPopMatrix();
+	
+}
+void estacioncocacola()
+{
+	//Local
+	glPushMatrix();
+	//Barra de Atencion
+	glPushMatrix();
+	glPopMatrix();
+	glPopMatrix();
+	//Barra Expendedora de refrescos
+	glPushMatrix();
+	glPopMatrix();
+}
+void puestopizzas()
+{
+	//Local
+	glPushMatrix();
+	//Barra
+	glPushMatrix();
+	glPopMatrix();
+	glPopMatrix();
+	//Mesas (2)
+	//1
+	glPushMatrix();
+	glPopMatrix();
+	//Bancas (2) para mesa1
+	glPushMatrix();
+	glPopMatrix();
+	glPushMatrix();
+	glPopMatrix();
+	//2
+	glPushMatrix();
+	glPopMatrix();
+	//Bancas (2) para mesa2
+	glPushMatrix();
+	glPopMatrix();
+	glPushMatrix();
+	glPopMatrix();
+}
+void carritohotdogs()
+{
+	//Carrito
+	glPushMatrix();
+	glPopMatrix();
+
+}
+void souvenirs()
+{
+	//Prisma de tienda
+	glPushMatrix();
+	glPopMatrix();
+	//3 planos de aparadores
+	//(1)
+	glPushMatrix();
+	glPopMatrix();
+	//(2)
+	glPushMatrix();
+	glPopMatrix();
+	//(3)
+	glPushMatrix();
+	glPopMatrix();
+	//Caja
+	glPushMatrix();
+	glPopMatrix();
+
+}
+void juegos_infantiles()
+{
+	//Oruga
+	//Circuito
+	//Carritos chocones
+	//La casa de Piolin
+}
+
+void juegos_de_azar()
+{
+	//Ruleta
+	//Pistolitas
+	//Canicas
+}
+void parque()
+{
+	//Barda1
+	glPushMatrix();
+	glPopMatrix();
+	//Barda2
+	glPushMatrix();
+	glPopMatrix();
+	//Barda3
+	glPushMatrix();
+	glPopMatrix();
+	//Pasto1
+	glPushMatrix();
+	glPopMatrix();
+	//Pasto2
+	glPushMatrix();
+	glPopMatrix();
+	//Piso1
+	glPushMatrix();
+	glPopMatrix();
+	//Piso2
+	glPushMatrix();
+	glPopMatrix();
+	//Piso3
+	glPushMatrix();
+	glPopMatrix();
+	//Piso4
+	glPushMatrix();
+	glPopMatrix();
+
+}
 
 void ciudad()
 {
 
-	glPushMatrix(); //Camino1
+	/*glPushMatrix(); //Camino1
 	glTranslatef(23.5, 0.0, 0.0);
 	glScalef(40, 0.1, 7);
 	glDisable(GL_LIGHTING);
@@ -230,7 +667,7 @@ void ciudad()
 
 	glPushMatrix(); //Pasto
 	glTranslatef(0.0, 0.0, 4.0);
-	glScalef(1500, 0.1, 1);
+	glScalef(87, 0.1, 1);
 	glDisable(GL_LIGHTING);
 	fig4.prisma2(text5.GLindex, 0);
 	glEnable(GL_LIGHTING);
@@ -255,9 +692,7 @@ void ciudad()
 	fig5.prisma2(text6.GLindex, 0);
 	glEnable(GL_LIGHTING);
 	glPopMatrix();
-
-
-
+	*/
 }
 
 void arbol_alpha()
@@ -491,6 +926,7 @@ GLuint createDL()
 
 void InitGL(GLvoid)     // Inicializamos parametros
 {
+	
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);				// Negro de fondo	
 
 	glEnable(GL_TEXTURE_2D);
@@ -510,6 +946,14 @@ void InitGL(GLvoid)     // Inicializamos parametros
 
 	glEnable(GL_AUTO_NORMAL);
 	glEnable(GL_NORMALIZE);
+	//ESTRUCTURA DEL BOOMERANG
+	t_metal01.LoadBMP("metal2.bmp");//Textura de Metal sin esta no se puede visualizar la imagen
+	t_metal01.BuildGLTexture();
+	t_metal01.ReleaseImage();
+	/////////////////////////////////
+	t_METAL.LoadBMP("METAL.tga");//Textura de Metal sin esta no se puede visualizar la imagen
+	t_METAL.BuildGLTexture();
+	t_METAL.ReleaseImage();
 
 	text1.LoadBMP("01.bmp");
 	text1.BuildGLTexture();
