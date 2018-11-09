@@ -39,6 +39,17 @@ CTexture text3;	//Flecha
 CTexture text4;	//Pavimento
 CTexture text5;	//Pasto01
 CTexture text6;	//Casa01
+CTexture text7;	//Casa01
+CTexture text8;	//Casa01
+CTexture text9;	//Casa01
+CTexture text10;	//Casa01
+CTexture text11;	//Casa01
+CTexture text12;	//Casa01
+CTexture text13;	//Casa01
+CTexture text14;	//Casa01
+CTexture text15;	//Casa01
+CTexture text16;	//Casa01
+CTexture text17;	//Casa01
 
 CTexture tree;
 CTexture edificio;
@@ -84,51 +95,66 @@ float rot2 = 0.0;
 void ciudad ()
 {
 	glRotatef(90, 1, 0, 0);
-		glPushMatrix(); //Camino1
-			glTranslatef(23.5,0.0,0.0);
-			glScalef(10,0.1,7);
+	//glRotatef(90, 0, 0, 0);
+		glPushMatrix(); //barda
+			glTranslatef(-3.5,6.0,0.0);//(-IZQ)
+			glScalef(20,0.1,7);
 			
+				//glRotatef(90, 1, 0, 0);
 			glDisable(GL_LIGHTING);
-			fig3.prisma2(text4.GLindex, 0);
+			fig3.prisma2(text4.GLindex, text4.GLindex);
 			glEnable(GL_LIGHTING);
+			glPopMatrix();
+			glRotatef(90, 0, 0, 1);
+				//glPushMatrix();
+				glScalef(60, 0.1, 7);
+			glTranslatef(-0.40, -64.0,0);//,,-ARR
+				glDisable(GL_LIGHTING);
+				fig3.prisma2(text4.GLindex, text4.GLindex);
+				glEnable(GL_LIGHTING);
+			
+						glTranslatef(0, 196.0, 0);//,,-ARR
+						glDisable(GL_LIGHTING);
+						fig3.prisma2(text4.GLindex, text4.GLindex);
+						glEnable(GL_LIGHTING);
+						
+
+			
+
 		glPopMatrix();
 
-		glPushMatrix(); //Camino2
-			glTranslatef(-23.5,0.0,0.0);
-			glScalef(40,0.1,7);
-			glDisable(GL_LIGHTING);
-			fig3.prisma2(text4.GLindex, 0);
-			glEnable(GL_LIGHTING);
-		glPopMatrix();
+		//glPushMatrix(); //Camino2
+		//	glTranslatef(-23.5,0.0,0.0);
+		//	glScalef(40,0.1,7);
+		//	glDisable(GL_LIGHTING);
+		//	fig3.prisma2(text4.GLindex, 0);
+		//	glEnable(GL_LIGHTING);
+		//glPopMatrix();
 
 		glPushMatrix(); //Pasto
-			glTranslatef(0.0,0.0,-4.0);
-			glScalef(87,0.1,1);
+			glTranslatef(0.0,-4,0);
+			glScalef(130,1,130);
 			glDisable(GL_LIGHTING);
 			fig4.prisma2(text5.GLindex, 0);
 			glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //Pasto
-			glTranslatef(0.0,0.0,4.0);
-			glScalef(87,0.1,1);
-			glDisable(GL_LIGHTING);
-			fig4.prisma2(text5.GLindex, 0);
-			glEnable(GL_LIGHTING);
-		glPopMatrix();
+	
+		//		
+		//				
+		//				
+
+
+
+
+
+
+
 		
 
 
 
-		//glPushMatrix(); //Casa01
-		//	glTranslatef(0.0,3.0,7.0);
-		//	glRotatef(90,1,0,0);
-		//	glRotatef(180,0,0,1);
-		//	glScalef(6,5.0,6);
-		//	glDisable(GL_LIGHTING);
-		//	fig5.prisma2(text6.GLindex, 0);
-		//	glEnable(GL_LIGHTING);
-		//glPopMatrix();
+		
 
 		//glPushMatrix(); //Casa01
 		//	glTranslatef(0.0,3.0,-7.0);
@@ -257,18 +283,37 @@ void InitGL ( GLvoid )     // Inicializamos parametros
 	text3.BuildGLTexture();
 	text3.ReleaseImage();
 
-	text4.LoadTGA("city/pavimento.tga");
+	text4.LoadTGA("TEXTURAS/BARDA.tga");
 	text4.BuildGLTexture();
 	text4.ReleaseImage();
 
-	text5.LoadTGA("city/pasto01.tga");
+	text5.LoadTGA("TEXTURAS/pavement.tga");
 	text5.BuildGLTexture();
 	text5.ReleaseImage();
 
-	text6.LoadTGA("city/casa01.tga");
+	text6.LoadTGA("PERSONAJES/Lola.tga");
 	text6.BuildGLTexture();
 	text6.ReleaseImage();
 
+	text7.LoadTGA("PERSONAJES/LucasconTransparencias.tga");
+	text7.BuildGLTexture();
+	text7.ReleaseImage();
+
+	text8.LoadTGA("PERSONAJES/batmancontransparencias.tga");
+	text8.BuildGLTexture();
+	text8.ReleaseImage();
+
+	text9.LoadTGA("PERSONAJES/Supermancontransparencias.tga");
+	text9.BuildGLTexture();
+	text9.ReleaseImage();
+
+	text10.LoadTGA("PERSONAJES/Sam_Bigotescontransparencias.tga");
+	text10.BuildGLTexture();
+	text10.ReleaseImage();
+
+	text11.LoadTGA("PERSONAJES/Lola.tga");
+	text11.BuildGLTexture();
+	text12.ReleaseImage();
 
 	tree.LoadTGA("tree01.tga");
 	tree.BuildGLTexture();
@@ -374,17 +419,39 @@ void display ( void )   // Creamos la funcion donde se dibuja
 			//			glTranslatef(0, 12,0);
 			//			miobj.cono(20, 8, 20, clorofila.GLindex);
 
-			//		glPushMatrix();
-			//					glEnable(GL_ALPHA_TEST);
-			//					glAlphaFunc(GL_GREATER, 0.1);
-			//					glTranslated(8,3,0);
-			//					miobj.esfera(1.5, 20, 20, esfera.GLindex);
-			//					glTranslated(-2, 4, 1);
-			//					miobj.esfera(1.5, 20, 20, tacos.GLindex);
-			//					glTranslated(-1.6, 4, 2);
-			//					miobj.esfera(2, 20, 20, fuego.GLindex);
-			//					glDisable(GL_ALPHA_TEST); 
-			//		glPopMatrix();
+					glPushMatrix();
+								glEnable(GL_ALPHA_TEST);
+								glAlphaFunc(GL_GREATER, 0.1);
+								/*glTranslated(8,3,0);
+								miobj.esfera(1.5, 20, 20, esfera.GLindex);
+								glTranslated(-2, 4, 1);
+								miobj.esfera(1.5, 20, 20,text6.GLindex);
+								glTranslated(-1.6, 4, 2);
+								miobj.esfera(2, 20, 20, fuego.GLindex);*/
+								//miobj.prisma2();
+								//lola
+
+									glTranslatef(0.0,0.0,9.0);
+									glRotatef(90,1,0,0);
+									glScalef(6,0.2,6);
+									fig5.prisma2(text6.GLindex, text6.GLindex);
+								
+
+									glTranslatef(4.5, 0.0, 0.0);
+								fig5.prisma2(text7.GLindex, text7.GLindex);
+
+								/*glTranslatef(4.5, 0.0, 0.0);
+								fig5.prisma2(text8.GLindex, text8.GLindex);
+*/
+
+								glTranslatef(-12.5, 0.0, 0.0);
+								fig5.prisma2(text9.GLindex, text9.GLindex);
+
+								glTranslatef(4.5, 10.0, 0.0);
+								fig5.prisma2(text10.GLindex, text10.GLindex);
+									glDisable(GL_ALPHA_TEST);
+
+					glPopMatrix();
 
 			//	glPopMatrix();
 

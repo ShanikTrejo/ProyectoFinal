@@ -1,4 +1,4 @@
 ﻿  main_prac9.cpp
-c:\users\ernestoh\documents\github\p20\proyectofinal\sixflags\sixflags\main_prac9.cpp(604): warning C4390: ';': se encontró una instrucción controlada vacía; ¿es esa la intención?
-c:\users\ernestoh\documents\github\p20\proyectofinal\sixflags\sixflags\main_prac9.cpp(609): warning C4390: ';': se encontró una instrucción controlada vacía; ¿es esa la intención?
+c:\users\ernestoh\documents\github\p20\proyectofinal\sixflags\sixflags\main_prac9.cpp(671): warning C4390: ';': se encontró una instrucción controlada vacía; ¿es esa la intención?
+c:\users\ernestoh\documents\github\p20\proyectofinal\sixflags\sixflags\main_prac9.cpp(676): warning C4390: ';': se encontró una instrucción controlada vacía; ¿es esa la intención?
   SIXFLAGS.vcxproj -> C:\Users\ERNESTOH\Documents\GitHub\p20\ProyectoFinal\SIXFLAGS\Debug\SIXFLAGS.exe
