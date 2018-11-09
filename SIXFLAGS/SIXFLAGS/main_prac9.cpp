@@ -65,12 +65,29 @@ CFiguras fig7;	//Para crear Monito
 
 CFiguras miobj;
 
+
+float movKit = 0;//MUEVE POLEO
+//float volKit = 0.0;
+bool g_fanimacion = false;
+bool g_fanimacion2 = false;
+bool g_fanimacion3 = false;
+bool g_fanimacion4 = false;
+
+float rot = -7.0; //rotaR BASE
+
+float rot2 = 0.0;
+
+
+
+
+
 void ciudad ()
 {
-
+	glRotatef(90, 1, 0, 0);
 		glPushMatrix(); //Camino1
 			glTranslatef(23.5,0.0,0.0);
-			glScalef(40,0.1,7);
+			glScalef(10,0.1,7);
+			
 			glDisable(GL_LIGHTING);
 			fig3.prisma2(text4.GLindex, 0);
 			glEnable(GL_LIGHTING);
@@ -270,7 +287,7 @@ void InitGL ( GLvoid )     // Inicializamos parametros
 	madera.BuildGLTexture();           //carga
 	madera.ReleaseImage();
 
-	clorofila.LoadTGA("verde.tga");
+	clorofila.LoadTGA("ama.tga");
 	clorofila.BuildGLTexture();           //carga
 	clorofila.ReleaseImage();
 
@@ -281,7 +298,7 @@ void InitGL ( GLvoid )     // Inicializamos parametros
 	fuego.LoadTGA("llama.tga");
 	fuego.BuildGLTexture();           //carga
 	fuego.ReleaseImage();
-	//END NEW//////////////////////////////
+	//END NEW////
 
 	objCamera.Position_Camera(0,2.5f,3, 0,2.5f,0, 0, 1, 0);
 
@@ -380,8 +397,8 @@ void display ( void )   // Creamos la funcion donde se dibuja
 				glRotatef(90, 1, 0, 0); //textura
 
 				glDisable(GL_LIGHTING);
-				glRotatef(angBrazo,1,0,0);
-				fig5.prisma2(madera.GLindex, madera.GLindex);
+				glRotatef(rot,1,0,0);
+				fig5.prisma2(clorofila.GLindex, clorofila.GLindex);
 				glEnable(GL_LIGHTING);
 
 				glPushMatrix(); //poleo
@@ -401,7 +418,8 @@ void display ( void )   // Creamos la funcion donde se dibuja
 						glTranslatef(0,0,0.4);//derecha,prof,-pariba
 						glScaled(0.5, 0.5, 0.5);
 						glRotatef(90, 1, 0, 0);
-						miobj.cilindro(9, 0.2, 20, clorofila.GLindex);
+						glRotatef(rot2, 0, 1, 0);
+						miobj.cilindro(7.5, 0.2, 20, clorofila.GLindex);
 
 						glEnable(GL_LIGHTING);
 
@@ -416,7 +434,7 @@ void display ( void )   // Creamos la funcion donde se dibuja
 				glPushMatrix(); //PATOTA1
 				glTranslatef(0.0, 20.0, -7.0);
 				glRotatef(60, 1, 0, 0);
-				glScalef(3, 2.0, 45);//ancho,profundo,alto
+				glScalef(1.5, 2.0, 45);//ancho,profundo,alto
 				//glRotatef(30, 1, 0, 0);
 				glDisable(GL_LIGHTING);
 				fig5.prisma2(madera.GLindex, madera.GLindex);
@@ -427,7 +445,7 @@ void display ( void )   // Creamos la funcion donde se dibuja
 				glPushMatrix(); //PATOTA4
 				glTranslatef(-8.0, 20.0, -7.0);
 				glRotatef(60, 1, 0, 0);
-				glScalef(3, 2.0, 45);//ancho,profundo,alto
+				glScalef(1.5, 2.0, 45);//ancho,profundo,alto
 				//glRotatef(30, 1, 0, 0);
 				glDisable(GL_LIGHTING);
 				fig5.prisma2(madera.GLindex, madera.GLindex);
@@ -437,7 +455,7 @@ void display ( void )   // Creamos la funcion donde se dibuja
 				glPushMatrix();//PATOTA2
 				glTranslatef(0, 18.0, -40.0);//,ALTO,PROFUNDO
 				glRotatef(-60, 1, 0, 0);
-				glScalef(3, 2.0, 48);//ancho,profundo,alto
+				glScalef(1.5, 2.0, 48);//ancho,profundo,alto
 				//glRotatef(30, 1, 0, 0);
 				glDisable(GL_LIGHTING);
 				fig5.prisma2(madera.GLindex, madera.GLindex);
@@ -447,7 +465,7 @@ void display ( void )   // Creamos la funcion donde se dibuja
 				glPushMatrix();//PATOTA3
 				glTranslatef(-8, 18.0, -40.0);//,ALTO,PROFUNDO
 				glRotatef(-60, 1, 0, 0);
-				glScalef(3, 2.0, 48);//ancho,profundo,alto
+				glScalef(1.5, 2.0, 48);//ancho,profundo,alto
 				//glRotatef(30, 1, 0, 0);
 				glDisable(GL_LIGHTING);
 				fig5.prisma2(madera.GLindex, madera.GLindex);
@@ -458,7 +476,29 @@ void display ( void )   // Creamos la funcion donde se dibuja
 				glPopMatrix();
 				glPopMatrix();
 			
+				if (rot >= 7)
+				{
+					g_fanimacion = false;
+					g_fanimacion2 = true;
+				}
 
+
+
+				if (rot<=-7)
+
+				{
+					g_fanimacion2 = false;
+
+					g_fanimacion = true;
+				}
+
+
+
+//glTranslatef(0, volKit, 0);//(frente , altura, traslado en 
+
+				//glRotatef(movKit, 1, 0, 0);//(frente , altura, traslado en x )
+				glRotatef(rot, 1, 0, 0);//(frente , altura, traslado en x )
+				glRotatef(rot2, 1, 0, 0);
 
 				
 
@@ -491,6 +531,29 @@ void animacion()
 			fig3.text_der=1;
 
 
+		if (g_fanimacion)
+		{
+			
+
+			if (rot < 7)
+				rot2 -= 0.01;
+				rot += 0.01;
+
+			
+
+		}
+
+	
+
+		if (g_fanimacion2)
+		{
+
+			//movKit -= 0.2;
+			if (rot > -7)
+            rot2 -= 0.01;
+			rot -= 0.01;
+
+		}
 	glutPostRedisplay();
 }
 
@@ -538,12 +601,12 @@ void keyboard ( unsigned char key, int x, int y )  // Create Keyboard Function
 			objCamera.Strafe_Camera( CAMERASPEED+0.4 );
 			break;
 		case 'r':
-			if (-8.5>= angBrazo);
+			if (-90>= rot2);
 			angBrazo += 0.5f;
 			printf("%f", angBrazo);
 			break;
 		case 'R':
-			if (8.5<= angBrazo);
+			if (90<= rot2);
 			angBrazo -= 0.5f;
 			printf("%f",angBrazo);
             break;
